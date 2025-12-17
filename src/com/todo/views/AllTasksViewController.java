@@ -315,7 +315,8 @@ public class AllTasksViewController implements Initializable {
 
         if (!taskText.isEmpty()) {
             Task newTask = new Task(taskText, deadline);
-            mainApp.getTaskData().add(newTask);
+//            mainApp.getTaskData().add(newTask);
+            mainApp.addTask(newTask);
             cancelAddTask();
             updateTasksDisplay();
         } else {
@@ -337,7 +338,8 @@ public class AllTasksViewController implements Initializable {
 
         alert.showAndWait().ifPresent(response -> {
             if (response == ButtonType.OK) {
-                mainApp.getTaskData().remove(task);
+//                mainApp.getTaskData().remove(task);
+                mainApp.deleteTask(task);
                 updateTasksDisplay();
             }
         });

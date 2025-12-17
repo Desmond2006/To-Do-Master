@@ -412,14 +412,17 @@ public class LoginController {
                 }
 
                 // Получаем данные пользователя из ответа
-                Long userId = response.get("id") != null ?
-                        ((Number) response.get("id")).longValue() : null;
-                String userEmail = (String) response.get("email");
+                Map<String, Object> userData = (Map<String, Object>) response.get("user");
+                Long userId = userData != null && userData.get("id") != null ?
+                        ((Number) userData.get("id")).longValue() : null;
+                String userEmail = userData != null ? (String) userData.get("email") : null;
+
 
                 // Сохраняем данные пользователя в MainApp
                 if (mainApp != null) {
                     mainApp.setCurrentUser(username, userId, userEmail);
-                    System.out.println(username + userId);
+                    System.out.println(username + userId + userEmail);
+
                 }
 
                 // Задержка перед переходом на главное окно

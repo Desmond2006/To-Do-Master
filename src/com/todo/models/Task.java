@@ -2,46 +2,58 @@ package com.todo.models;
 
 import java.time.LocalDate;
 
-import javafx.beans.property.*;
-
 public class Task {
-    private final StringProperty taskText;
-    private final ObjectProperty<LocalDate> deadline;
-    private final BooleanProperty completed;
+    private Long id; // Добавляем поле для хранения ID с сервера
+    private String taskText;
+    private LocalDate deadline;
+    private boolean completed;
 
-    public Task(){
-        this(null, null);
+    // Конструкторы
+    public Task() {}
+
+    public Task(String taskText, LocalDate deadline) {
+        this.taskText = taskText;
+        this.deadline = deadline;
+        this.completed = false;
     }
 
-    public Task(String taskText, LocalDate deadline){
-        this.taskText = new SimpleStringProperty(taskText);
-        this.deadline = new SimpleObjectProperty<LocalDate>(deadline);
-        this.completed = new SimpleBooleanProperty(false);
+    public Task(Long id, String taskText, LocalDate deadline, boolean completed) {
+        this.id = id;
+        this.taskText = taskText;
+        this.deadline = deadline;
+        this.completed = completed;
     }
 
-    public String getTaskText(){
-        return taskText.get();
+    // Геттеры и сеттеры
+    public Long getId() {
+        return id;
     }
 
-    public void setTaskText(String newTaskText){
-        this.taskText.set(newTaskText);
+    public void setId(Long id) {
+        this.id = id;
     }
 
-    public LocalDate getDeadline(){
-        return deadline.get();
+    public String getTaskText() {
+        return taskText;
     }
 
-    public void setDeadline(LocalDate newDeadline){
-        this.deadline.set(newDeadline);
+    public void setTaskText(String taskText) {
+        this.taskText = taskText;
     }
 
-    public boolean getCompleted(){
-        return completed.get();
+    public LocalDate getDeadline() {
+        return deadline;
     }
 
-    public void setCompleted(boolean isCompleted){
-        this.completed.set(isCompleted);
+    public void setDeadline(LocalDate deadline) {
+        this.deadline = deadline;
     }
 
+    public boolean getCompleted() {
+        return completed;
+    }
 
+    public void setCompleted(boolean completed) {
+        this.completed = completed;
+    }
 }
